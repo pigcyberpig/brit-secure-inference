@@ -1,0 +1,22 @@
+# Extra Python dependencies for THIS repository's benchmark / plotting scripts.
+#
+# NOTE: torch, transformers, and the (modified) CrypTen are NOT listed here.
+# They are provided by the SHAFT installation step — see README.md
+# "Installing Dependencies". Install this file only AFTER SHAFT is installed
+# and the `shaft` conda environment is active:
+#
+#     conda run -n shaft pip install -r requirements.txt
+#
+# Version pins mirror the verified `shaft` / `base` environments.
+
+# --- data / numerics (some are not in SHAFT's own requirements.txt) ---
+datasets==3.0.1
+pandas>=1.2.2
+scipy>=1.6.0
+numpy<2
+scikit-learn
+pyyaml>=5.3.1
+tqdm>=4.66
+
+# --- plotting (run the figure scripts in the `base` env, see EXPERIMENTS.md) ---
+matplotlib>=3.7
