@@ -1,6 +1,6 @@
 # BRiT: Secure Transformer Inference Benchmark Code
 
-This repository contains the experiment code and benchmark artifacts for our
+This repository contains the cleaned experiment code for our
 work on **secure (2-party) Transformer inference** built on top of
 [CrypTen](https://github.com/facebookresearch/CrypTen) and
 [SHAFT](https://github.com/andeskyl/SHAFT).
@@ -9,11 +9,11 @@ It implements and benchmarks improved **softmax** and **LayerNorm** protocols
 (`scaled_k2` softmax + `MLFormer` inverse-sqrt) against the SHAFT baseline
 (`ode_clip_i16` softmax + Newton-Raphson sqrt), across BERT-base / BERT-large /
 GPT-2, multiple padded sequence lengths, and several `tc`/`netem` network
-profiles, plus a LayerNorm mask-leakage security analysis.
+profiles.
 
 > The accompanying paper is under review and is **not** included in this
-> repository. For a full reproduction guide (every experiment's code location,
-> exact run command, and artifact path), see **[`EXPERIMENTS.md`](EXPERIMENTS.md)**.
+> repository. Generated data, model weights, checkpoints, logs, and paper assets
+> are intentionally excluded.
 
 ---
 
@@ -75,9 +75,6 @@ pip install .
 conda run -n shaft pip install -r requirements.txt
 ```
 
-> Plotting uses `matplotlib`, which is **not** in the `shaft` env. Run figure
-> scripts in a separate env that has matplotlib (see `EXPERIMENTS.md`).
-
 ---
 
 ## 3. Configure Paths
@@ -102,8 +99,8 @@ export GPT2_MODEL=/path/to/gpt2    # or just "gpt2"
 
 ## 4. Running Experiments
 
-The four most common commands (full list and per-experiment detail in
-`EXPERIMENTS.md` §2–§3):
+The main commands are listed below. More notes are in
+[`EXPERIMENTS.md`](EXPERIMENTS.md).
 
 ```bash
 cd /path/to/this/repo
@@ -151,34 +148,19 @@ Throttle is global and GPU 0 is exclusive, so cases must run **serially**.
 scripts/
   paths.py            centralized SHAFT_ROOT / DATA_ROOT config
   runner/             formal experiment runners (e2e 2PC, length matrix, network replay)
-  softmax/            softmax single-operator benchmarks / sweeps
-  shared/             layernorm single-op benchmark, aggregators, network cost model
-  layernorm/          LayerNorm leakage / attack analysis, MLFormer sqrt
-  glue_research/      GLUE accuracy evaluation
+  softmax/            softmax single-operator benchmark
+  shared/             LayerNorm benchmark, aggregators, network profiles
+  layernorm/          MLFormer inverse-sqrt / LayerNorm implementation
   throttle_lo.sh      tc/netem throttle helper
-artifacts/            summary results ONLY (raw run logs are git-ignored)
-EXPERIMENTS.md        full reproduction guide — read this first
+EXPERIMENTS.md        concise reproduction notes
 ```
 
-`scripts/legacy/` (diagnostic / historical scripts) and `paper/` (manuscript
-under review) are intentionally **not** part of this public release.
+`artifacts/`, `data/`, `models/`, `checkpoints/`, paper assets, and diagnostic
+scripts are intentionally **not** part of this public release.
 
 ---
 
-## 6. Results at a Glance
-
-(Numbers from `artifacts/`; full tables in `EXPERIMENTS.md` §4.)
-
-- **Softmax** single-op communication: **−71%** vs SHAFT.
-- **LayerNorm** rounds: **26 → 5** (**−80.8%**), stable across lengths.
-- **End-to-end** (BERT-base, len 128, 100 Mbps / 80 ms): **12.8 vs 17.9 min**
-  (**−29%**) vs SHAFT, already beating the prior BLB measured numbers.
-- **GLUE accuracy** (ours ≈ plaintext ≈ SHAFT): SST-2 0.9197, QNLI 0.9023,
-  CoLA 0.8265, STS-B 0.8910.
-
----
-
-## 7. Citation
+## 6. Citation
 
 If you use this code, please cite: (paper reference to be added upon publication)
 
@@ -193,7 +175,7 @@ If you use this code, please cite: (paper reference to be added upon publication
 
 ---
 
-## 8. Acknowledgements
+## 7. Acknowledgements
 
 This work builds directly on **[SHAFT](https://github.com/andeskyl/SHAFT)**
 (Kei & Chow, NDSS 2025) and Facebook Research's
@@ -203,7 +185,7 @@ contributions.
 
 ---
 
-## 9. License
+## 8. License
 
 MIT — see [`LICENSE`](LICENSE). Note that SHAFT/CrypTen and any third-party code
 you install via the steps above remain under their own respective licenses.

@@ -6,10 +6,10 @@
 
 ## Subdirectories
 
-- `softmax/`: softmax benchmarks, sweeps, and comparisons
-- `shared/`: shared utilities and cross-cutting benchmarks
+- `softmax/`: softmax single-operator benchmark
+- `shared/`: shared benchmark utilities, summaries, and network profiles
 - `runner/`: formal experiment runners
-- `layernorm/`: LayerNorm protocol, leakage, attack, and summary scripts
+- `layernorm/`: MLFormer inverse-sqrt / LayerNorm protocol code
 
 ## Usage Note
 
