@@ -9,6 +9,7 @@
 - `softmax/`: softmax benchmarks, sweeps, and comparisons
 - `shared/`: shared utilities and cross-cutting benchmarks
 - `runner/`: formal experiment runners
+- `layernorm/`: LayerNorm protocol, leakage, attack, and summary scripts
 
 ## Usage Note
 

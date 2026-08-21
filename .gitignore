@@ -16,6 +16,7 @@ __pycache__/
 
 # Paper manuscript + all writing assets (under review / private)
 paper/
+Neurocomputing/
 
 # External reference PDFs (third-party copyright)
 papers/
@@ -31,10 +32,54 @@ AGENTS.md
 
 # Unrelated scratch
 writing_prompts.md
+cryptpeft_literature_review.md
 
 # Local eval output / scratch dirs
+data/
+datasets/
 eval_private/
+outputs/
+results/
+runs/
+logs/
+checkpoints/
+models/
+pretrained/
+model_cache/
+hf_cache/
+wandb/
+mlruns/
+tb_logs/
 *.local
+
+# Generated experiment data / logs / model artifacts
+*.bin
+*.log
+*.out
+*.err
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.pickle
+*.safetensors
+*.onnx
+*.pb
+*.h5
+*.tflite
+*.gguf
+*.ggml
+*.joblib
+*.msgpack
+*.arrow
+*.index
+*.data-*
 
 # ============================================================
 # artifacts/: NOT shipped in this release.

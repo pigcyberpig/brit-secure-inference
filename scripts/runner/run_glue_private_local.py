@@ -60,6 +60,9 @@ task_to_keys = {
 
 
 def validate_softmax_config(name):
+    if name == "reciprocal":
+        # CrypTen-native softmax (max-stable -> exp -> reciprocal).
+        return name
     if name == "ode_clip_i16":
         return name
     if name.startswith("scaled_k") and "_i" in name:
@@ -221,6 +224,9 @@ def parse_args():
 
 
 def softmax_override(name):
+    if name == "reciprocal":
+        # CrypTen-native softmax dispatch (upstream max-stable softmax).
+        return {"functions.softmax_method": "reciprocal"}
     if name == "ode_clip_i16":
         return {
             "functions.softmax_method": "ode",
