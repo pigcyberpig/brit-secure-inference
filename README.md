@@ -1,4 +1,4 @@
-# BRiT: Secure Transformer Inference Benchmark Code
+# STAR: Secure Transformer Inference Benchmark Code
 
 This repository contains the cleaned experiment code for our
 work on **secure (2-party) Transformer inference** built on top of
@@ -165,9 +165,9 @@ scripts are intentionally **not** part of this public release.
 If you use this code, please cite: (paper reference to be added upon publication)
 
 ```bibtex
-@inproceedings{brit2026,
+@inproceedings{star2026,
   title     = {<!-- paper title -->},
-  author    = {<!-- authors -->},
+  author    = {pigcyberpig},
   booktitle = {<!-- venue -->},
   year      = {2026}
 }
